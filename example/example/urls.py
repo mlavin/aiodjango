@@ -22,6 +22,6 @@ from . import views
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
-    url(r'^hello/$', views.hello, name='hello'),
-    url(r'^world/$', views.world, name='world'),
+    url(r'^socket/$', views.socket, name='websocket'),
+    url(r'^$', views.index, name='index'),
 ]

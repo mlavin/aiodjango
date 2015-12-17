@@ -9,8 +9,12 @@ https://docs.djangoproject.com/en/1.9/howto/deployment/wsgi/
 
 import os
 
+from django.core.wsgi import get_wsgi_application
 from aiodjango import get_aio_application
 
 os.environ.setdefault("DJANGO_SETTINGS_MODULE", "example.settings")
 
-application = get_aio_application()
+
+application = get_wsgi_application()
+
+app = get_aio_application(application)

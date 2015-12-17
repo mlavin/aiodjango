@@ -1,0 +1,33 @@
+<!DOCTYPE html>{% load staticfiles %}
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>aiodjango Example Project</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" media="all" href="https://cdnjs.cloudflare.com/ajax/libs/pure/0.6.0/pure-min.css">
+    <link rel="stylesheet" type="text/css" media="all" href="https://cdnjs.cloudflare.com/ajax/libs/pure/0.6.0/grids-responsive-min.css">
+    <link rel="stylesheet" type="text/css" media="all" href="{% static 'css/example.css' %}">
+</head>
+<body>
+    <div id="main" class="pure-g">
+        <div id="content-wrapper" class="pure-u-4-5">
+            <div id="messages"></div>
+            <form class="pure-form pure-g" data-socket="ws{% if request.is_secure %}s{% endif %}://{{ request.get_host }}{% url 'websocket' %}">
+                <span class="pure-u-1-8" id="label" hidden></span>
+                <input class="pure-u-3-4" type="text" id="message" placeholder="Type your message" disabled hidden required>
+                <button class="pure-u-1-8 pure-button" id="send" disabled hidden>Send</button>
+                <input class="pure-u-7-8" type="text" id="name" placeholder="Choose a name" required>
+                <button class="pure-u-1-8 pure-button pure-button-primary" id="connect">Connect</button>
+            </form>
+        </div>
+    </div>
+    <footer id="page-footer" class="pure-g">
+        <div class="pure-u-1">
+            This is a demo application for <a href="https://github.com/mlavin/aiodjango">aiodjango</a>. &copy; {% now 'Y' %} Mark Lavin
+        </div>
+    </footer>
+    <a href="https://github.com/mlavin/aiodjango"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://s3.amazonaws.com/github/ribbons/forkme_right_gray_6d6d6d.png" alt="Fork me on GitHub"></a>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+    <script src="{% static 'js/example.js' %}"></script>
+</body>
+</html>
