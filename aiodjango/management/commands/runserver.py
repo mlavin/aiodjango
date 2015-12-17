@@ -1,6 +1,7 @@
 import asyncio
 import errno
 import datetime
+import logging
 import os
 import socket
 import sys
@@ -34,7 +35,7 @@ class Command(BaseCommand):
         self.stdout.write(now)
         self.stdout.write((
             "Django version %(version)s, using settings %(settings)r\n"
-            "Starting development server at http://%(addr)s:%(port)s/\n"
+            "Starting aidjango server at http://%(addr)s:%(port)s/\n"
             "Quit the server with %(quit_command)s.\n"
         ) % {
             "version": self.get_version(),
@@ -50,7 +51,12 @@ class Command(BaseCommand):
         else:
             loop = asyncio.get_event_loop()
         app = self.get_handler(*args, **options)
-        handler = app.make_handler()
+        log = logging.getLogger('aiodjango.runserver.access')
+        log.propagate = False
+        log.setLevel(logging.INFO)
+        stdout = logging.StreamHandler(stream=self.stdout)
+        log.addHandler(stdout)
+        handler = app.make_handler(access_log=log)
         server = None
         try:
             server = loop.run_until_complete(
