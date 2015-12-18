@@ -26,5 +26,5 @@ def get_aio_application(wsgi=None):
             path = '/' + path if not path.startswith('/') else path
             # Add app route for co-routines
             app.router.add_route('*', path, func)
-    app.router.add_route("*", "/{path_info:.*}", handler.handle_request)
+    app.router.add_route("*", "/{path_info:.*}", handler.handle_request, name='wsgi-app')
     return app
