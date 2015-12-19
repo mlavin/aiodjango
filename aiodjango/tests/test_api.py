@@ -58,10 +58,3 @@ class GetApplicationTestCase(SimpleTestCase):
         app = api.get_aio_application()
         match = yield from app.router.resolve(path)
         self.assertEqual(match.route.name, 'aiohttp-ok')
-
-    def test_coroutine_resolve_variable(self):
-        """Simple path resolution should continue to work for added coroutines."""
-        path = reverse('aiohttp-ok')
-        app = api.get_aio_application()
-        match = yield from app.router.resolve(path)
-        self.assertEqual(match.route.name, 'aiohttp-ok')
