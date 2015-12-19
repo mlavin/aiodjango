@@ -51,12 +51,12 @@ class Command(BaseCommand):
         else:
             loop = asyncio.get_event_loop()
         app = self.get_handler(*args, **options)
-        log = logging.getLogger('aiodjango.runserver.access')
+        log = logging.getLogger('aiodjango.runserver')
         log.propagate = False
         log.setLevel(logging.INFO)
         stdout = logging.StreamHandler(stream=self.stdout)
         log.addHandler(stdout)
-        handler = app.make_handler(access_log=log)
+        handler = app.make_handler(access_log=log, access_log_format='%t "%r" %s %b %D')
         server = None
         try:
             server = loop.run_until_complete(
