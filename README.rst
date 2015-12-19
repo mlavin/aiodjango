@@ -6,6 +6,12 @@ async views/websocket handlers using aiohttp. The API is highly unstable
 and I wouldn't recommend that you use this code for anything other than
 wild experimentation.
 
+.. image:: https://travis-ci.org/mlavin/aiodjango.svg
+    :target: https://travis-ci.org/mlavin/aiodjango
+
+.. image:: https://codecov.io/github/mlavin/aiodjango/coverage.svg?branch=master
+    :target: https://codecov.io/github/mlavin/aiodjango?branch=master
+
 
 How It Works
 ------------
