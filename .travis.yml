@@ -3,7 +3,7 @@ sudo: false
 language: python
 
 python:
-  - "3.4"
+  - '3.4'
 
 env:
   - TOXENV=py34-django18
@@ -21,3 +21,13 @@ after_success:
 branches:
   only:
     - master
+
+deploy:
+  provider: pypi
+  user: mlavin
+  password:
+    secure: YHI9DSlthwE+0kjl1KYqHuMWpaexsrA0Gv7+pGNrPscPyktYefN1jcp3yEkR79p/r5BtkzY75ZzbILOe5ZHy6qHOKhtmcWxdIOG2h55uCCR75TmWlu6AEULq8iXTGg2F4V18QxHsauryvEhtQTRrOiVfDYQMqY23iF+nkz1guBfZbfAErJXtu2avejD6uOE6JwkPv/DFp/zYLBRVLy+3t+bREqeRPmbpY1mkwMtNBAPI2yjBfYb8WUNnY8P+41YtxnFqZ3E21SKjx6qTVNrOQ9cqR1X2oKo3ZCtb+om9G7RaGI3CKspOpNdLoXBzbydHmg/ktUmPwLxK8cW9kG+eMo3Nwor8aUd+sKiBT7aw2YYh3tv5m/BFaBVtayYV6TL9WIvrg0XXjVz6XkATb76cxWRbXGeTvRbztkPu6ew5i26Ea98bWjLe38nUSKWeFzvbA9p+cYV23+xm0xoMc1npNHraqPj+XplHxDwlVQSoSnK55qtqi0Fhav/WVxp4xOC9jRsTCVvVOFX/w/kcDXgVBGdCPAB8wxUYidppR4WN7mxuPgWBrxlN5VB8gILh37IYUbHqvn7xhFw80XJWZoIjFkgfTs0S6TeWMB+Y755+Bpf4DwD+9N/BFkqDGtZfssxjAIb8QxkNqhYBNFFp+ZSpwI/BRvijsgsPGqmkS/tqJpQ=
+  distributions: "sdist bdist_wheel"
+  on:
+    tags: true
+    repo: mlavin/aiodjango
