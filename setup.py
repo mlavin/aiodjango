@@ -9,7 +9,7 @@ class VersionFinder(ast.NodeVisitor):
     def __init__(self):
         self.version = None
 
-    def visit_assign(self, node):
+    def visit_Assign(self, node):
         if node.targets[0].id == '__version__':
             self.version = node.value.s
 
@@ -31,7 +31,6 @@ def get_package_meta():
     }
 
 _meta = get_package_meta()
-
 
 setup(
     name='aiodjango',
