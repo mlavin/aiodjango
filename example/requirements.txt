@@ -1,3 +1,4 @@
+aioamqp==0.5.1
 aiohttp==0.19.0
 aiohttp-wsgi==0.3.0
 chardet==2.3.0

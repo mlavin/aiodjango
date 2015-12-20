@@ -22,8 +22,6 @@
         var text = $('#message').val();
         e.preventDefault();
         if (socket) {
-            // Log local message
-            addMessage({user: name, message: text});
             // Send message to the socket
             sendMessage(text);
             $('#message').val('');
