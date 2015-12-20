@@ -21,13 +21,13 @@ def socket(request):
 
         @asyncio.coroutine
         def cleanup(app):
-            yield from  protocol.close(timeout=1.0)
+            yield from protocol.close(timeout=1.0)
             transport.close()
         request.app.register_on_finish(cleanup)
 
     amqp = request.app['amqp']
     channel = yield from amqp.channel()
-    exchange = yield from channel.exchange_declare(
+    yield from channel.exchange_declare(
         exchange_name='demo-room', type_name='fanout')
     result = yield from channel.queue_declare('', exclusive=True)
     yield from channel.queue_bind(result['queue'], 'demo-room', routing_key='')
