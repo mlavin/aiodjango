@@ -1,3 +1,5 @@
+import tempfile
+
 from unittest.mock import patch, Mock
 
 from django.core.urlresolvers import reverse
@@ -58,3 +60,11 @@ class GetApplicationTestCase(SimpleTestCase):
         app = api.get_aio_application()
         match = yield from app.router.resolve(path)
         self.assertEqual(match.route.name, 'aiohttp-ok')
+
+    def test_static_route(self):
+        """Optionally add the routing of static files."""
+        with self.settings(STATIC_URL='/static/', STATIC_ROOT=tempfile.gettempdir()):
+            app = api.get_aio_application(include_static=True)
+            self.assertEqual(len(app.router.routes()), 3)
+            match = yield from app.router.resolve('/static/')
+            self.assertEqual(match.route.name, 'static')
