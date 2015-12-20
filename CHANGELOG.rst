@@ -2,8 +2,8 @@ Change History for aiodjango
 ============================
 
 
-v0.1 (TBD)
-----------
+v0.1 (2015-12-20)
+-----------------
 
 Initial packaged release.
 
