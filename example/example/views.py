@@ -37,6 +37,7 @@ def socket(request):
     def message(channel, body, envelope, properties):
         if not resp.closed:
             resp.send_str(body.decode('utf-8'))
+        yield from channel.basic_client_ack(envelope.delivery_tag)
 
     yield from channel.basic_consume(message, queue_name=result['queue'])
 
