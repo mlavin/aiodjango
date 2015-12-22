@@ -7,6 +7,7 @@ python:
 
 env:
   - TOXENV=lint
+  - TOXENV=docs
   - TOXENV=py34-django18
   - TOXENV=py34-django19
 
