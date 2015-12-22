@@ -1,5 +1,14 @@
-Change History for aiodjango
-============================
+Changelog
+=========
+
+History of released for aiodjango.
+
+
+v0.2 (Under Development)
+------------------------
+
+- Added support for coroutine routes containing named regex groups.
+- Initial project documentation.
 
 
 v0.1 (2015-12-20)
