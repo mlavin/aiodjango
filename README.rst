@@ -43,8 +43,10 @@ to install the necessary requirements::
     (aiodjango) $ python manage.py runserver
 
 This starts the server on http://localhost:8000/ with a new version of Django's
-built-in runserver. For a more multi-process server you can run using the
-aiohttp worker along with Gunicorn::
+built-in runserver.
 
-    (aiodjango) $ gunicorn example.wsgi:app --worker-class aiohttp.worker.GunicornWebWorker --workers 2
 
+Documentation
+-------------
+
+Additional project documentation can be found on Read The Docs: https//aiodjango.readthedocs.org/
