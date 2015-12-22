@@ -53,4 +53,4 @@ built-in runserver.
 Documentation
 -------------
 
-Additional project documentation can be found on Read The Docs: https//aiodjango.readthedocs.org/
+Additional project documentation can be found on Read The Docs: https://aiodjango.readthedocs.org/
