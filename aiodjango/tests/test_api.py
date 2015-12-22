@@ -6,6 +6,7 @@ from django.core.urlresolvers import reverse
 from django.test import override_settings, SimpleTestCase
 
 from .. import api
+from ..test import async_test
 
 # Empty set of URL patterns
 urlpatterns = []
@@ -40,31 +41,39 @@ class GetApplicationTestCase(SimpleTestCase):
         app = api.get_aio_application()
         self.assertEqual(len(app.router.routes()), 2)
 
+    @async_test
     def test_resolve_wsgi(self):
         """Routing existing WSGI views should continue to work."""
         path = reverse('wsgi-ok')
+        request = Mock(method='GET', raw_path=path)
         app = api.get_aio_application()
-        match = yield from app.router.resolve(path)
+        match = yield from app.router.resolve(request)
         self.assertEqual(match.route.name, 'wsgi-app')
 
+    @async_test
     def test_resolve_wsgi_fallback(self):
         """Any route not handled by a coroutine will fall back to the WSGI app."""
         path = '/this-path-does-not-exist/'
+        request = Mock(method='GET', raw_path=path)
         app = api.get_aio_application()
-        match = yield from app.router.resolve(path)
+        match = yield from app.router.resolve(request)
         self.assertEqual(match.route.name, 'wsgi-app')
 
+    @async_test
     def test_coroutine_resolve_simple(self):
         """Simple path resolution should continue to work for added coroutines."""
         path = reverse('aiohttp-ok')
+        request = Mock(method='GET', raw_path=path)
         app = api.get_aio_application()
-        match = yield from app.router.resolve(path)
+        match = yield from app.router.resolve(request)
         self.assertEqual(match.route.name, 'aiohttp-ok')
 
+    @async_test
     def test_static_route(self):
         """Optionally add the routing of static files."""
         with self.settings(STATIC_URL='/static/', STATIC_ROOT=tempfile.gettempdir()):
             app = api.get_aio_application(include_static=True)
             self.assertEqual(len(app.router.routes()), 3)
-            match = yield from app.router.resolve('/static/')
+            request = Mock(method='GET', raw_path='/static/')
+            match = yield from app.router.resolve(request)
             self.assertEqual(match.route.name, 'static')
