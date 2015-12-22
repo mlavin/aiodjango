@@ -20,8 +20,8 @@ class DjangoRegexRoute(DynamicRoute):
         pattern = re.compile(regex)
         super().__init__(method, handler, name, pattern, None, expect_handler=expect_handler)
 
-    def url(self, *, parts, query=None):
-        url = reverse(self.name, kwargs=parts)
+    def url(self, query=None, **kwargs):
+        url = reverse(self.name, kwargs=kwargs)
         return self._append_query(url, query)
 
     def __repr__(self):
