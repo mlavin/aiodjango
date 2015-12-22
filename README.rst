@@ -12,6 +12,10 @@ wild experimentation.
 .. image:: https://codecov.io/github/mlavin/aiodjango/coverage.svg?branch=master
     :target: https://codecov.io/github/mlavin/aiodjango?branch=master
 
+.. image:: https://readthedocs.org/projects/aiodjango/badge/?version=latest
+    :target: http://aiodjango.readthedocs.org/en/latest/?badge=latest
+    :alt: Documentation Status
+
 
 How It Works
 ------------
